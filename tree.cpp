@@ -9,7 +9,7 @@ typedef struct tnode{
 	struct tnode *child
 }TSBNode;
 
-int TreeHeight2(TSBNode *t)
+int TreeHeight(TSBNode *t)
 {
 	TBSNode *p;
 	int h, maxh = 0;

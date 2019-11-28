@@ -63,8 +63,51 @@ void DestroyBT(BTNode *&b)
 	}
 }
 
-BTNode *FindNode(BTNode *b, ElemType x)
+BTNode FindNode(BTNode *b, ElemType x)
 {
-	
+	BTNode *p;
+	if(b->data==x)
+		return b;
+	else
+	{
+		p=FindNode(b->lchild, x);
+		if(p!=NULL)
+			return p;
+		else
+			FindNode(rchild, x);
+	}
 }
+
+BTNode LchildNode(BTNode *p)
+	return p->lchild;
+BTNode RchildNode(BTNode *p)
+	return p->rchild;
 	
+int BTNodeDepth(BTNode *b)
+{
+	int lchilddepth, rchilddepth;
+	if(b==NULL)
+		return (0);
+	else
+	{
+		lchilddepth=BTNodeDepth(b->lchild);
+		rchilddepth=BTNodeDepth(b->rchild);
+		
+		return(lchilddepth>rchilddepth)?(lchilddepth+1):(rchilddepth+1);
+	}
+}
+
+void DispBTree(BTNode *b)
+{
+	if(b!=NULL)
+	{
+		printf("%c",b->data);
+		if(b->lchild!=NULL || b->rchild!=NULL)
+		{	printf("(");
+			DispNTree(b->lchild);
+			if(b->rchild!=NULL) printf(",");
+			DispNTree(b->rchild);
+			printf(")");
+		}
+	}
+}
